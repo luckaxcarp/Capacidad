@@ -68,7 +68,7 @@
         app:srcCompat="@drawable/ic_menu_gallery" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroupResolver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
@@ -86,21 +86,18 @@
             android:id="@+id/radio_img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:paddingHorizontal="40dp" />
 
         <RadioButton
             android:id="@+id/radio_img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:paddingHorizontal="40dp" />
 
         <RadioButton
             android:id="@+id/radio_img3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked" />
+            android:layout_height="wrap_content" />
     </RadioGroup>
 
     <Button
@@ -112,7 +109,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/btnSubmit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupResolver" />
 
 
 </android.support.constraint.ConstraintLayout>

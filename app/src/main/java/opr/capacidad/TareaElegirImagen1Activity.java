@@ -114,7 +114,7 @@ public class TareaElegirImagen1Activity extends AppCompatActivity {
         rbImage1 = findViewById(R.id.radio_img1);
         rbImage2 = findViewById(R.id.radio_img2);
         rbImage3 = findViewById(R.id.radio_img3);
-        radioGroup = findViewById(R.id.radioGroup);
+        radioGroup = findViewById(R.id.radioGroupResolver);
         viewFProgramada = findViewById(R.id.etDate);
         Volver = findViewById(R.id.btnVolver);
         Crear = findViewById(R.id.btnCrear);
@@ -185,9 +185,6 @@ public class TareaElegirImagen1Activity extends AppCompatActivity {
                     Log.i("SET DATA", e.toString());
                 }
 
-
-
-
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 if (selectedId != -1) {
                     RadioButton selectedRadioButton = findViewById(selectedId);
@@ -206,44 +203,6 @@ public class TareaElegirImagen1Activity extends AppCompatActivity {
                 startActivity(Volver);
             }
         });
-
-
-      /*  Intent intent = new Intent(TareaElegirImagen1Activity.this, ResolverTareaActivity.class);
-        intent.putExtra("variable_integer", idResultante);
-        intent.putExtra("variable_integer2", idResultante2);
-        intent.putExtra("variable_integer3", idResultante3);
-
-        startActivity(intent);*/
-    }
-
-    private void oldSendTarea() {
-        request = Volley.newRequestQueue(TareaElegirImagen1Activity.this);
-
-        Log.i("CREAR", "consigna: " + etConsigna.getText().toString() +
-                ", fecha programada: " + viewFProgramada.getText().toString());
-
-        String url = WebServer.oldGenerateUrlCreateTarea(etConsigna.getText().toString(),
-                viewFProgramada.getText().toString(),idTerapia,"path1",
-                "path2", "path3", rightChoice);
-
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
-                null, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.i("RESPONSE", response.toString());
-                Toast.makeText(getApplicationContext(), "Tarea creada exitosamente", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO: Handle error
-                Log.i("RESPONSE", error.toString());
-                Toast.makeText(getApplicationContext(), "Error al crear la tarea", Toast.LENGTH_SHORT);
-            }
-        });
-        request.add(jsonObjectRequest);
     }
 
     private void sendTarea() {
@@ -271,9 +230,9 @@ public class TareaElegirImagen1Activity extends AppCompatActivity {
                 params.put("f_programada",viewFProgramada.getText().toString());
                 params.put("tipo","1");
                 params.put("id_terapia",idTerapia);
-                params.put("ubicacion1","path1");
-                params.put("ubicacion2","path2");
-                params.put("ubicacion3","path3");
+                params.put("ubicacion1",imageString);
+                params.put("ubicacion2",imageString2);
+                params.put("ubicacion3",imageString3);
                 params.put("imagencorrecta",rightChoice);
 
                 return params;
@@ -285,8 +244,10 @@ public class TareaElegirImagen1Activity extends AppCompatActivity {
     }
 
     private String bitmapToBase64(Bitmap image) {
+        image = Bitmap.createScaledBitmap(image,300,300,true); //Escalar imagen
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 75, baos);
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
         return Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }

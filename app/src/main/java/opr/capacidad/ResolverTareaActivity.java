@@ -1,8 +1,11 @@
 package opr.capacidad;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +26,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import opr.capacidad.Data.WebServer;
 import opr.capacidad.model.Chronometer;
 import opr.capacidad.model.Tarea;
 
-public class ResolverTareaActivity extends AppCompatActivity implements Response.Listener<JSONObject>,
-        Response.ErrorListener {
+public class ResolverTareaActivity extends AppCompatActivity {
 
     private String idTarea;
 
@@ -46,10 +51,6 @@ public class ResolverTareaActivity extends AppCompatActivity implements Response
     private Button btnSubmit;
     private double resolutionTime;
 
-    private RequestQueue requestQueue;
-    private JsonObjectRequest jsonObjectRequest;
-    private JSONObject requestResponse;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +61,12 @@ public class ResolverTareaActivity extends AppCompatActivity implements Response
         ivImg1 = findViewById(R.id.iv_img1);
         ivImg2 = findViewById(R.id.iv_img2);
         ivImg3 = findViewById(R.id.iv_img3);
-        rbGroup = findViewById(R.id.radioGroup);
+        rbGroup = findViewById(R.id.radioGroupResolver);
         rbImg1 = findViewById(R.id.radio_img1);
         rbImg2 = findViewById(R.id.radio_img2);
         rbImg3 = findViewById(R.id.radio_img3);
         btnSubmit = findViewById(R.id.btnSubmit);
 
-        requestQueue = Volley.newRequestQueue(ResolverTareaActivity.this);
         idTarea = getIntent().getStringExtra("ID_TAREA");
         Log.i("IDTAREA", idTarea);
         loadData();
@@ -100,10 +100,15 @@ public class ResolverTareaActivity extends AppCompatActivity implements Response
                 }
             }
         });
+
+        rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+            }
+        });
     }
-
-
-
 
     protected void onDestroy() {
         stopChronometer();
@@ -151,26 +156,43 @@ public class ResolverTareaActivity extends AppCompatActivity implements Response
                         //tvTittle.setText("Vacío"); //tarea.getTittle()
                         tvConsigna.setText(jsonObject.optString("consigna"));
 
+                        JSONObject jsonObj1 = null;
+                        JSONObject jsonObj2 = null;
+                        JSONObject jsonObj3 = null;
+
                         try {
                             json = response.getJSONArray("1");
-                            jsonObject = json.getJSONObject(0);
+                            jsonObj1 = json.getJSONObject(0);
+
+                            json = response.getJSONArray("2");
+                            jsonObj2 = json.getJSONObject(0);
+
+                            json = response.getJSONArray("3");
+                            jsonObj3 = json.getJSONObject(0);
+
                         } catch (JSONException e) {
                             Log.i("JSON", e.toString());
                         }
-                        //Toast.makeText(ResolverTareaActivity.this,
-                                "Imagen 1: " + jsonObject.optString("ubicacion") +
-                                        " Imagen 2: " + jsonObject.optString("2") +
-                                        " Imagen 3: " + jsonObject.optString("3"),Toast.LENGTH_LONG).show();
-                        /*ivImg1.setImageBitmap(ultimoRegistro("2"));
-                        ivImg2.setImageBitmap(ultimoRegistro("1"));
-                        ivImg3.setImageBitmap(ultimoRegistro(""));*/
+
+                        Log.i("IMAGENES","Imagen 1: " + jsonObj1.optString("contenido") +
+                                        " Imagen 2: " + jsonObj2.optString("contenido") +
+                                        " Imagen 3: " + jsonObj3.optString("contenido"));
+
+                        ivImg1.setImageBitmap(base64toBitmap(jsonObj1.optString("contenido")));
+                        ivImg2.setImageBitmap(base64toBitmap(jsonObj2.optString("contenido")));
+                        ivImg3.setImageBitmap(base64toBitmap(jsonObj3.optString("contenido")));
 
                         int num = 0;
+                        JSONObject jsonObj;
 
                         try {
-                            num = Integer.parseInt(jsonObject.optString("numero"));
-                        } catch(NumberFormatException nfe) {
+                            json = response.getJSONArray("imagencorrecta");
+                            jsonObj = json.getJSONObject(0);
+                            num = Integer.parseInt(jsonObj.optString("numero"));
+                        } catch (NumberFormatException nfe) {
                             Log.i("ERROR", "Opcion correcta invalida");
+                        } catch (JSONException jsone) {
+                            Log.i("JSON", jsone.toString());
                         }
 
                         switch (num) {
@@ -193,7 +215,7 @@ public class ResolverTareaActivity extends AppCompatActivity implements Response
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-
+                        Log.i("RESPONSE", error.toString());
                     }
                 });
         queue.add(jsonObjectRequest);
@@ -208,18 +230,17 @@ public class ResolverTareaActivity extends AppCompatActivity implements Response
         }
     }
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Log.i("RESPONSE", error.toString());
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        requestResponse = response;
-        Log.i("RESPONSE", response.toString());
-    }
-
-    public void setIdTarea(String idTarea) {
-        this.idTarea = idTarea;
+    private Bitmap base64toBitmap(String image) {
+        Bitmap decodedImage = null;
+        try {
+            image = URLDecoder.decode(image, "utf-8");
+            byte[] imageBytes = Base64.decode(image, Base64.DEFAULT);
+            decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0 , imageBytes.length);
+        } catch (UnsupportedEncodingException uee) {
+            Log.i("DECODE", "Error al decodificar url. " + uee.toString());
+        } catch (IllegalArgumentException iae) {
+            Log.i("DECODE", "Error al decodificar url. " + iae.toString());
+        }
+        return decodedImage;
     }
 }

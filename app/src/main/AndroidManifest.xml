@@ -40,7 +40,20 @@
             android:name=".TodoUsuario"
             android:label="@string/title_activity_todo_usuario"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Select"></activity>
+        <activity android:name=".Select" />
+        <activity android:name=".crear_tarea" />
+        <activity android:name=".Resolvertarea_imagen" />
+        <activity android:name=".resolver_imagen" />
+        <activity android:name=".resolver_audio" />
+        <activity android:name=".identificar_imagen" />
+        <activity android:name=".registro_usuario1" />
+        <activity
+            android:name=".registro_usuario2"
+            android:label="@string/title_activity_registro_usuario2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".re"
+            android:label="@string/title_activity_re"></activity>
     </application>
 
 </manifest>

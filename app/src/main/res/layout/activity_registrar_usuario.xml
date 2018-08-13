@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:background="#b4e61d"
     tools:context=".RegistrarUsuario">
 
     <TextView
@@ -13,58 +14,20 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
-        android:text="Registrar Usuario"
+        android:text="¿Que tipo de usuario sos?"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
+
+
         android:layout_alignParentBottom="true"
-
-
         android:layout_centerHorizontal="true"
-
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="98dp"
         android:onClick="onClick"
         android:text="Registrar" />
-
-    <EditText
-        android:id="@+id/campoId"
-        android:layout_width="332dp"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentTop="true"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="id" />
-
-    <EditText
-        android:id="@+id/campoNombre"
-        android:layout_width="328dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="194dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="nombre" />
-
-    <EditText
-        android:id="@+id/campoRol"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="177dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="rol" />
 
     <Button
         android:id="@+id/btnVolver"
@@ -76,5 +39,44 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:text="Volver" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="144dp"
+        android:layout_height="47dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="178dp"
+        android:layout_toStartOf="@+id/imageButton2"
+        android:text="Terapeuta"
+        tools:textColor="@color/cardview_light_background" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="147dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView2"
+        android:text="Paciente"
+        tools:textColor="@color/cardview_light_background" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="91dp"
+        android:layout_height="82dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnRegistrar"
+        android:layout_marginTop="78dp"
+        android:scrollbarThumbVertical="s"
+        android:src="@drawable/kisspng-computer-icons-mental-health-counselor-therapy-hea-sitting-man-5ad5f817bb4963"
+        tools:src="@drawable/kisspng-computer-icons-mental-health-counselor-therapy-hea-sitting-man-5ad5f817bb4963" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btnRegistrar"
+        android:layout_alignTop="@+id/imageButton"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:src="@drawable/70069024-icono-de-psicólogo-con-el-paciente-en-un-sofá" />
 
 </RelativeLayout>

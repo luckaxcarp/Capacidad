@@ -107,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etConsigna" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroupResolver"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -190,7 +190,7 @@
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupResolver" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="0dp"

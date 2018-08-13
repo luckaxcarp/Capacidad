@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".crear_tarea">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:text="Elegir imagen"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IDENTIFICAR LA IMAGEN"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:text="uNIR CON FLECHAS"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="190dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:text="RESOLVER CON AUDIO"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="267dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:text="CON IMAGENES"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:text="CON AUDIO"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="413dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="61dp"
+        android:layout_height="51dp"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="62dp"
+        android:layout_height="50dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="53dp"
+        android:layout_height="47dp"
+        app:srcCompat="@android:drawable/ic_btn_speak_now"
+        tools:background="@color/colorPrimaryDark"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="267dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="62dp"
+        android:layout_height="51dp"
+        app:srcCompat="@drawable/ic_menu_share"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="190dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="53dp"
+        android:layout_height="47dp"
+        app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
+        tools:background="@android:color/background_dark"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="413dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="52dp"
+        android:layout_height="47dp"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="342dp" />
+</android.support.constraint.ConstraintLayout>

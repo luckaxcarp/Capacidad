@@ -32,4 +32,8 @@
     <string name="title_activity_todo_usuario">TodoUsuario</string>
     <string name="label_load_images">Agregue las imagenes e indique la correcta.</string>
     <string name="inputConsigna">Consigna</string>
+    <string name="title_activity_crear_tarea">crearTarea</string>
+    <string name="title_activity_nuvea_tarea">Nuvea_tarea</string>
+    <string name="title_activity_registro_usuario2">registro_usuario2</string>
+    <string name="title_activity_re">re</string>
 </resources>

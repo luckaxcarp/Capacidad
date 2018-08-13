@@ -34,7 +34,7 @@ final public class WebServer implements Response.Listener<JSONObject>, Response.
     // Constants of select Tarea
     private static String CAMPO_ID_TAREA = "tarea";
 
-    private static String SERVER_URL = AWS_SERVER;
+    private static String SERVER_URL = LOCAL_SERVER;
 
     private String url = "";
     private RequestQueue request;
